@@ -1,46 +1,166 @@
-# Getting Started with Create React App
+# verify-code-input-react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> React component to insert a code (number, text, password) in a sigle input elements
 
-## Available Scripts
+![verify-code](image.png)
 
-In the project directory, you can run:
+[![NPM](https://img.shields.io/npm/v/verify-code-input-react.svg)](https://www.npmjs.com/package/verify-code-input-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-### `yarn start`
+## Install
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm i verify-code-input-react
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+or
 
-### `yarn test`
+```bash
+yarn add verify-code-input-react
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+or
 
-### `yarn build`
+```bash
+pnpm i verify-code-input-react
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1 . Require verify-code-input-react after installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
+import { InputCode } from 'verify-code-input-react';
+```
 
-### `yarn eject`
+2 . Include verify-code-input-react as in the following example
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### use ref
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```tsx
+import React, { useRef } from 'react';
+import { InputCode } from 'verify-code-input-react';
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+const App = () => {
+  const ref = useRef('');
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  const handleClick = () => {
+    console.log(ref.current.value);
+  };
 
-## Learn More
+  return (
+    <>
+      <InputCode ref={ref} fields={6} placeholder='-' type='text' placeholder={'-'} />
+      <button onClick={handleClick}>submit</button>
+    </>
+  );
+};
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### use onTriggerChange function
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```tsx
+import React, { useState } from 'react';
+import { InputCode } from 'verify-code-input-react';
+
+const App = () => {
+  const [value, setValue] = useState<string>('');
+
+  const handleClick = () => {
+    console.log(value);
+  };
+
+  return (
+    <>
+      <InputCode
+        fields={6}
+        onKeyDownInput={() => {}}
+        onTriggerChange={setValue}
+        placeholder='-'
+        type='text'
+        placeholder={'-'}
+      />
+      <button onClick={handleClick}>submit</button>
+    </>
+  );
+};
+```
+
+## Props
+
+<table>
+  <tr>
+    <th>Name<br/></th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Default</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>type</td>
+    <td>string "number" | "text" | "password"</td>
+    <td>false</td>
+    <td>number</td>
+    <td>Allow type on input</td>
+  </tr>
+  <tr>
+    <td>disabled</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>false</td>
+    <td>Controls field disabled</td>
+  </tr>
+  <tr>
+    <td>placeholder</td>
+    <td>string</td>
+    <td>false</td>
+    <td>""</td>
+    <td>Placeholder on input</td>
+  </tr>
+  <tr>
+    <td>styles</td>
+    <td>CSSProperties</td>
+    <td>false</td>
+    <td>none</td>
+    <td>Styles for input</td>
+  </tr>
+  <tr>
+    <td>containerClassName</td>
+    <td>string</td>
+    <td>false</td>
+    <td>''</td>
+    <td>Container class name</td>
+  </tr>
+    <tr>
+     <td>className</td>
+     <td>string</td>
+     <td>false</td>
+     <td>''</td>
+     <td>Input class name</td>
+   </tr>
+  <tr>
+    <td>error</td>
+    <td>ReactNode</td>
+    <td>false</td>
+    <td>none</td>
+    <td>Error element</td>
+  </tr>
+  <tr>
+    <td>onKeyDownInput</td>
+    <td>function ((e: KeyboardEvent<HTMLInputElement>) => void)</td>
+    <td>false</td>
+    <td>none</td>
+    <td>onKeyDownInput events</td>
+  </tr>
+  <tr>
+    <td>onTriggerChange</td>
+    <td>function ((value: string) => void)</td>
+    <td>false</td>
+    <td>none</td>
+    <td>Change code handler</td>
+  </tr>
+
+</table>
+
+## Contributors
+
+MIT © [StanTran](https://github.com/TranVanDu)

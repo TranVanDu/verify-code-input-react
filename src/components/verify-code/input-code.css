@@ -1,0 +1,28 @@
+/* css container input */
+.wrap-input-code {
+  display: flex;
+  gap: 16px;
+}
+
+/* css default styles input */
+.input-code {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #d4dbdf;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.input-code::-webkit-outer-spin-button,
+.input-code::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.input-code[type='number'] {
+  -moz-appearance: textfield;
+}
